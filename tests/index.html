@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <script src="../node_modules/htmlelement-extension/distrib/htmlElement.min.js"></script>
+  <script src="../node_modules/htmlelement-events-extension/distrib/htmlElement-events.min.js"></script>
+  <script src="../node_modules/format-validator/distrib/format-validator.min.js"></script>
+  <script src="../node_modules/positionizer/distrib/positionizer.min.js"></script>
+  <script src="../sources/ui-validations.js"></script>
+  <link href="../sources/ui-validations.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <form id="f1">
+    <input type="text" name="t1" required="required" />
+    <input type="text" name="t2" required="required" />
+    <input type="text" name="t3" required="required" />
+    <div style="float:right">
+      <input type="text" name="t4" required="required" />
+    </div>
+    <div>
+      <input type="text" name="t5" required="required" />
+
+    </div>
+    <button type="button" id="btn">Ok</button>
+    <button type="button" id="clean">Clean</button>
+  </form>
+
+  <script>
+    document.ready(function() {
+      qsi("btn").on("click", function() {
+        var t1 = qsn("t1");
+        if (validators.isEmpty(t1.value)) {
+          addWarning(t1, "warning");
+        }
+
+        var t2 = qsn("t2");
+        if (validators.isEmpty(t2.value)) {
+          addError(t2, "error");
+        }
+
+        var t3 = qsn("t3");
+        if (validators.isEmpty(t3.value)) {
+          addInfo(t3, "info");
+        }
+        var t4 = qsn("t4");
+        if (validators.isEmpty(t4.value)) {
+          addInfo(t4, "info");
+        }
+      });
+
+      qsi("clean").on("click", function() {
+        var t1 = qsn("t1");
+        removeMsg(t1);
+        var t2 = qsn("t2");
+        removeMsg(t2);
+        var t3 = qsn("t3");
+        removeMsg(t3);
+        var t4 = qsn("t4");
+        removeMsg(t4);
+      });
+    });
+  </script>
+</body>
+
+</html>

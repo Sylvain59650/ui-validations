@@ -1,0 +1,64 @@
+<html>
+
+<head>
+  <script src="htmlElement.min.js"></script>
+  <script src="../../node_modules/htmlelement-events-extension/distrib/htmlElement-events.min.js"></script>
+  <script src="../../node_modules/format-validator/distrib/format-validator.min.js"></script>
+  <script src="../../node_modules/positionizer/distrib/positionizer.min.js"></script>
+  <script src="modules/ui-validations/distrib/ui-validations.min.js"></script>
+  <link href="../../sources/ui-validations.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+  <form id="f1">
+    <input type="text" name="t1" required="required" />
+    <input type="text" name="t2" required="required" />
+    <input type="text" name="t3" required="required" />
+    <div style="float:right">
+      <input type="text" name="t4" required="required" />
+    </div>
+    <div>
+      <input type="text" name="t5" required="required" />
+
+    </div>
+    <button type="button" id="btn">Ok</button>
+    <button type="button" id="clean">Clean</button>
+  </form>
+
+  <script>
+    document.ready(function() {
+
+      var constraints = [{
+        field: "t1",
+        rules: [{
+          type: "required",
+          msg: "error"
+        }, {
+          type: "custom",
+          fn: function(v) {
+            return v.length > 3
+          },
+          msg: "field too short"
+        }]
+      }, {
+        field: "t2",
+        rules: [{
+          type: "required",
+          msg: "error required"
+        }]
+
+      }];
+
+      qsi("btn").on("click", function() {
+        var ret = uiValidations.validate(constraints);
+        console.log(ret);
+      });
+
+      qsi("clean").on("click", function() {
+        uiValidations.cleanErrors();
+      });
+    });
+  </script>
+</body>
+
+</html>
