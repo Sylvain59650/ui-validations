@@ -38,7 +38,9 @@ function removeMsg(input) {
 
 function cleanErrors() {
   qsa(".field-validation").remove();
-  qsa(".error").class("-info -warning -error").attr("title", "");
+  var inputs = qsa(".error");
+  inputs.class("-info -warning -error");
+  inputs.attr("title", "");
 }
 
 function addError(input, msg) {

@@ -12,6 +12,7 @@
 <body>
   <form id="f1">
     <input type="text" name="t1" required="required" />
+    <label for="t2">t2</label>
     <input type="text" name="t2" required="required" />
     <label for="t3">t3</label>
     <input type="text" name="t3" required="required" />
@@ -49,12 +50,10 @@
       }, {
         field: "t2",
         rules: [{
-          type: "required",
-          msg: "error required"
+          type: "required"
         }, {
           type: "minlength",
-          min: 4,
-          msg: "field is too short"
+          min: 4
         }, {
           type: "maxlength",
           max: 6,
